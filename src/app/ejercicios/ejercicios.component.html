@@ -1,1 +1,56 @@
-<p>ejercicios works!</p>
+
+<!--
+  Primer ejemplo con los datos estáticos donde la vista muestra ejercicio.name
+  que trae del modelo en el input con [(ngModel)]="ejercicio.name" pero si lo
+  cambias en ese imput a la vez también se cambia en la vista.
+  Representa como viaja la información del componente a la vista y luego regresa
+  a el componente hace el cambio y regresa a la vista y muestra el nuevo valor.
+  También se muestra el uso de las pipe con {{ejercicio.name | uppercase}} donde
+  le decimos al name que se muestre todo en mayúscula, pero también para los formatos
+  de fechas y mucho más.
+-->
+
+<!--
+  <h2>{{ejercicio.name | uppercase}}</h2>
+  <div>
+    <span>id:</span>
+    {{ejercicio.id}}
+  </div>
+  <div>
+    <label>
+      nombre:
+      <input [(ngModel)]="ejercicio.name" placeholder="nombre">
+    </label>
+    <span>nombre:</span>
+    {{ejercicio.name}}
+  </div>
+-->
+
+<!--
+  Ejemplo donde se trae desde el componente un array y mediante *ngFor="let ejercicio of ejercicios"
+  se recorre y se vizualizan todos los elementos que se traen del component.app-ejercicios
+  También se muestra un ejemplo del uso de la función js (click)="onSelectEjercicio(ejercicio)" y también
+  de la etiqueta *ngIf="ejercicioSeleccionado"
+  También podemos ver que con [class.selected]="ejercicio===ejercicioSeleccionado" en el inspector de elementos
+  del navegador siempre que seleccionamos un elemento el atributo html class="selected"
+-->
+
+<h2>Listado de Ejercicios</h2>
+<ul class="ejercicios">
+  <li *ngFor="let ejercicio of ejercicios" (click)="onSelectEjercicio(ejercicio)" [class.selected]="ejercicio===ejercicioSeleccionado">
+    <span class="ejercicios">
+      {{ejercicio.id}}
+    </span>
+    {{ejercicio.name}}
+  </li>
+</ul>
+<div *ngIf="ejercicioSeleccionado">
+  <h2>Detalle</h2>
+  <div>
+    <span>
+      id:
+    </span>
+    {{ejercicioSeleccionado.id}}
+  </div>
+</div>
+
