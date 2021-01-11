@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "lista-ejercicios-angular-4a01b": {
+      "hosting": {
+        "listaEjercicios": [
+          "lista-ejercicios-angular-4a01b"
+        ]
+      }
+    }
+  }
+}

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ejercicio } from '../ejercicio';
 import { EJERCICIOS } from '../collection-ejercicios';
+//Comento esta importacion ya que el ejercicio.service.ts se encarga de inyectar las dependencias necesarias.
+import { ejercicio } from '../ejercicio';
+import { EjercicioService } from '../ejercicio.service';
+
 
 @Component({
   selector: 'app-ejercicios',
@@ -18,15 +21,27 @@ export class EjerciciosComponent implements OnInit {
   */
 
   //Ejemplo dinámico de declaración de objeto importando sus atributos
-  ejercicios=EJERCICIOS;
-  ejercicioSeleccionado:ejercicio={
-    id:0,
-    name:'Valor por Defecto'
-  };
+  //ejercicios=EJERCICIOS;
+  ejercicios:ejercicio[];
+  ejercicioSeleccionado:ejercicio;
 
-  constructor() { }
+  constructor(private ejercicioService:EjercicioService) {
+    console.log(" ---- Componente Ejercicios CREADO ---- ")
+  }
+
+  /*
+  getEjercicios_old():void{
+    this.getEjercicios=this.ejercicioService.getEjercicios();
+  }
+  */
+
+  getEjercicios():void{
+    this.ejercicioService.getEjercicios().subscribe(ejercicios=>this.ejercicios=ejercicios);
+  }
 
   ngOnInit(): void {
+    console.log(" ---- Componente Ejercicios[ngOnInit] ---- ")
+    this.getEjercicios();
   }
 
   //Se declara la función onSelectEjercicio() que se llama desde la vista
